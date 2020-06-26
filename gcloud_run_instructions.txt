@@ -1,0 +1,36 @@
+# To build instance
+
+export IMAGE_FAMILY="pytorch-latest-gpu" # or "pytorch-latest-cpu" for non-GPU instances
+export ZONE="us-west1-b"
+export INSTANCE_NAME="pytorch-affective-computing"
+export INSTANCE_TYPE="n1-highmem-4"
+
+# budget: 'type=nvidia-tesla-t4,count=1'
+gcloud compute instances create $INSTANCE_NAME \
+        --zone=$ZONE \
+        --image-family=$IMAGE_FAMILY \
+        --image-project=deeplearning-platform-release \
+        --maintenance-policy=TERMINATE \
+        --accelerator='type=nvidia-tesla-t4,count=1' \
+        --machine-type=$INSTANCE_TYPE \
+        --boot-disk-size=200GB \
+        --metadata="install-nvidia-driver=True" \
+        --preemptible
+        
+# Set up enviromental variables
+export IMAGE_FAMILY="pytorch-latest-gpu" # or "pytorch-latest-cpu" for non-GPU instances
+export ZONE="us-west1-b"
+export INSTANCE_NAME="pytorch-affective-computing"
+export INSTANCE_TYPE="n1-highmem-4"    
+             
+# Start instance
+gcloud compute instances start $INSTANCE_NAME --zone=$ZONE
+
+# Start Jupyter
+gcloud compute ssh --project $PROJECT_ID --zone $ZONE   $INSTANCE_NAME -- -L 8080:localhost:8080
+
+# Then go to 
+http://localhost:8080
+
+# End instance
+gcloud compute instances stop $INSTANCE_NAME
