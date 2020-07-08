@@ -13,15 +13,14 @@ gcloud compute instances create $INSTANCE_NAME \
         --maintenance-policy=TERMINATE \
         --accelerator='type=nvidia-tesla-t4,count=1' \
         --machine-type=$INSTANCE_TYPE \
-        --boot-disk-size=200GB \
+        --boot-disk-size=150GB \
         --metadata="install-nvidia-driver=True" \
         --preemptible
         
 # Set up enviromental variables
-export IMAGE_FAMILY="pytorch-latest-gpu" # or "pytorch-latest-cpu" for non-GPU instances
 export ZONE="us-west1-b"
-export INSTANCE_NAME="pytorch-affective-computing"
-export INSTANCE_TYPE="n1-highmem-4"    
+export INSTANCE_NAME="pytorch-vm"
+export PROJECT_ID="affective-computing-thesis"
              
 # Start instance
 gcloud compute instances start $INSTANCE_NAME --zone=$ZONE
@@ -29,8 +28,22 @@ gcloud compute instances start $INSTANCE_NAME --zone=$ZONE
 # Start Jupyter
 gcloud compute ssh --project $PROJECT_ID --zone $ZONE   $INSTANCE_NAME -- -L 8080:localhost:8080
 
+# Start jupyter (cloud instructions)
+gcloud compute instances describe --project affective-computing-thesis --zone us-west1-b pytorch-affective-computing-vm | grep googleusercontent.com | grep datalab
+
 # Then go to 
 http://localhost:8080
 
 # End instance
 gcloud compute instances stop $INSTANCE_NAME
+
+# external ip
+34.105.69.131 
+
+# internal IP
+10.138.0.19
+
+# num training images
+414799
+# num val images
+5500
