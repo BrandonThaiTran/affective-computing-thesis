@@ -29,7 +29,7 @@ gcloud compute instances start $INSTANCE_NAME --zone=$ZONE
 gcloud compute ssh --project $PROJECT_ID --zone $ZONE   $INSTANCE_NAME -- -L 8080:localhost:8080
 
 # Start jupyter (cloud instructions)
-gcloud compute instances describe --project affective-computing-thesis --zone us-west1-b pytorch-affective-computing-vm | grep googleusercontent.com | grep datalab
+gcloud compute instances describe --project affective-computing-thesis --zone us-west1-b pytorch-vm | grep googleusercontent.com | grep datalab
 
 # Then go to 
 http://localhost:8080
