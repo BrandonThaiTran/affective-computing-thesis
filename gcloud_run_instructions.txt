@@ -47,3 +47,16 @@ gcloud compute instances stop $INSTANCE_NAME
 414799
 # num val images
 5500
+
+# Set up enviromental variables
+export ZONE="us-central1-f"
+export INSTANCE_NAME="deep-learning-vm"
+export PROJECT_ID="affective-computing-thesis"
+
+# Start instance
+gcloud compute instances start $INSTANCE_NAME --zone=$ZONE
+             
+# connect to jupyter
+gcloud compute ssh --zone="us-central1-f" jupyter@"deep-learning-vm" -- -L 8080:localhost:8080
+
+fectnet/Manually_Annotated_Images/103/29a31ebf1567693f4644c8ba3476ca9a72ee07fe67a5860d98707a0a.jpg'
