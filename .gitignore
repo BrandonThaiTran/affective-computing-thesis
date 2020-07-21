@@ -1,11 +1,11 @@
 extract-audio/videofile.mp4
-<<<<<<< Updated upstream
+
 affectnet-analysis/affectnet
-=======
+
 hymenoptera_data
 .ipynb_checkpoints
 data_loading_tutorial.ipynb
->>>>>>> Stashed changes
+
 dataloading_tutorial
 transfer_learning_tutorial
 affectnet-analysis/models
