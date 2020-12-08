@@ -1,4 +1,4 @@
-# To build instance
+# To build instance 
 
 export IMAGE_FAMILY="pytorch-latest-gpu" # or "pytorch-latest-cpu" for non-GPU instances
 export ZONE="us-west1-b"
